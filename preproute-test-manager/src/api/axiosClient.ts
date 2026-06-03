@@ -1,16 +1,9 @@
 import axios from 'axios';
 
-/** In dev, always use the current Vite origin so proxy works on any port (5173, 5174, etc.). */
-export const getApiBaseUrl = (): string => {
-  if (import.meta.env.DEV) {
-    return `${window.location.origin}/api`;
-  }
-  return '/api';
-};
-
 const axiosClient = axios.create({
-  baseURL: getApiBaseUrl(),
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: { 'Content-Type': 'application/json' },
+  timeout: 30000,
 });
 
 axiosClient.interceptors.request.use((config) => {
