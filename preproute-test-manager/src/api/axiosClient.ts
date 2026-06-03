@@ -5,7 +5,7 @@ export const getApiBaseUrl = (): string => {
   if (import.meta.env.DEV) {
     return `${window.location.origin}/api`;
   }
-  return import.meta.env.VITE_API_BASE_URL ?? '/api';
+  return '/api';
 };
 
 const axiosClient = axios.create({
